@@ -1,4 +1,10 @@
-//alterado layout para exibição em mobile e desktop
+const express = require('express');
+const app = express();
+
+// Render exige isso:
+const PORT = process.env.PORT || 3000;
+
+// Página principal
 app.get('/', (req, res) => {
    res.send(`
        <!DOCTYPE html>
@@ -16,19 +22,19 @@ app.get('/', (req, res) => {
                    display: flex;
                    justify-content: center;
                    align-items: center;
-                   height: 100vh;
+                   min-height: 100vh;
                    margin: 0;
+                   padding: 20px;
                }
 
                .card {
                    background-color: #2a2b36;
                    padding: 20px;
                    border-radius: 8px;
-
-                   /* Responsividade */
                    width: 90%;
                    max-width: 500px;
-                   margin: 20px auto;
+                   margin: auto;
+                   box-sizing: border-box;
                    text-align: center;
                    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
                }
@@ -70,3 +76,8 @@ E o condutor da minha alma.
        </html>
    `);
 });
+
+// Inicia o servidor
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+}); 
